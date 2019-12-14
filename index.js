@@ -3,12 +3,14 @@ var bodyParser = require('body-parser');
 
 var userRoute = require('./routes/user.route')
 
+var cookieParser = require('cookie-parser')
+
 const port = 3000;
 
 const app = express();
 app.set('view engine', 'pug') //set the view engine
 app.set('views', './views') //set the pug folder
-
+app.use(cookieParser())
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
