@@ -2,7 +2,7 @@ const express = require('express');
 var bodyParser = require('body-parser');
 
 var userRoute = require('./routes/user.route')
-
+var authRoute = require('./routes/auth.route')
 var cookieParser = require('cookie-parser')
 
 const port = 3000;
@@ -21,6 +21,7 @@ app.get('/', (req, res) => res.render('index', {
 }));
 
 app.use('/users', userRoute);
+app.use('/auth', authRoute);
 app.use(express.static('public'))
 app.listen(port, function() {
 	console.log(`Example app listening on port ${port}!`);

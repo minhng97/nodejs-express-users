@@ -1,0 +1,18 @@
+extends ../layouts/common
+block content
+	#main
+		.container-fluid.ml-3.rounded.shadow(style="width: 320px; padding:18px 48px;")
+			h2.h2 Login
+			if errors
+				each error in errors
+					.alert.alert-danger= error
+
+			.input-group.mb-3.ml-3
+				form.create-user(method="POST")
+					.form-group
+						label(for="email") Email
+						input#email(name="email", type="text", class="form-control", value=values ? values.email : "")
+					.form-group
+						label(for="password") Password
+						input#password(name="password", type="password", class="form-control", value=values ? values.password : "")
+					button(class="btn btn-primary") Login

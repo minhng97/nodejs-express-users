@@ -88,7 +88,7 @@ background: linear-gradient(0deg, rgba(0,69,255,1) 23%, rgba(3,67,238,1) 47%);
 	border-top: none;
 }
 
-.create-user input[type="text"]{
+.create-user input{
 	color: white;
 	border-radius: 0;
 	background: none;
@@ -96,8 +96,12 @@ background: linear-gradient(0deg, rgba(0,69,255,1) 23%, rgba(3,67,238,1) 47%);
 	border-bottom: 1px solid #61696f8c;
 }
 
-.create-user input[type="text"]:focus{
+.create-user input:focus{
+	color: white;
 	background: none;
 	border: none;
 	border-bottom: 1px solid;
+}
+i[onclick="openNav()"] {
+	cursor: pointer;
 }
