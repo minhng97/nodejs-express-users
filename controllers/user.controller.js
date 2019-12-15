@@ -19,7 +19,7 @@ module.exports.search =  (req, res) => { // function start when get users/search
 }
 
 module.exports.create =  (req, res) => { 
-	console.log(req.cookies); // log the cookie in server-side
+	//console.log(req.cookies); // log the cookie in server-side
 	res.render('users/create') 
 }
 module.exports.get = (req, res) => { // must be under users/create or it will missunderstand
@@ -32,7 +32,7 @@ module.exports.get = (req, res) => { // must be under users/create or it will mi
 module.exports.postCreate = (req, res) => { // when post request, add user name into db.json
 	req.body.id = shortid.generate();
 
-	console.log(res.locals) // in user.validate
+	//console.log(res.locals) // in user.validate
 	db.get('users').push(req.body).write();
 	res.redirect('./');
 }
