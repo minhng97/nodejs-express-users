@@ -5,6 +5,7 @@ var userRoute = require('./routes/user.route')
 var authRoute = require('./routes/auth.route')
 var cookieParser = require('cookie-parser')
 
+const authMiddleware = require('./middlewares/auth.middleware')
 const port = 3000;
 
 const app = express();
@@ -20,7 +21,7 @@ app.get('/', (req, res) => res.render('index', {
 	name: "AAA"
 }));
 
-app.use('/users', userRoute);
+app.use('/users', authMiddleware.requireAuth, userRoute);
 app.use('/auth', authRoute);
 app.use(express.static('public'))
 app.listen(port, function() {

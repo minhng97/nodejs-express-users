@@ -3,7 +3,7 @@ var router = express.Router()
 
 const validate = require('../validate/user.validate') // validate input field
 const controller = require('../controllers/user.controller') //  controller = module.exports
-
+const authMiddleware = require('../middlewares/auth.middleware')
 router.get('/', controller.index); // module.exports.index
 
 router.get('/cookie', (req, res, next) => { // when user access /cookie
