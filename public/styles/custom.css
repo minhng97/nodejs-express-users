@@ -1,1 +1,103 @@
 /* custom css code */
+@import url('https://fonts.googleapis.com/css?family=Sarabun:400&display=swap');
+
+body {
+	font-family: 'Sarabun', sans-serif;
+	background: rgb(37,47,59);
+	color: #ffffff;
+	font-size: .875rem;
+}
+
+/* The side navigation menu */
+.sidenav {
+  height: 100%;
+  width: 170px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(42,54,66);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  margin-left: 200px;
+  margin-top: -50px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.container-fluid {
+	background-color: rgb(42,54,66)
+}
+.btn-create {
+	background: #0545ef;
+background: rgb(0,69,255);
+background: linear-gradient(0deg, rgba(0,69,255,1) 23%, rgba(3,67,238,1) 47%);
+	border: none;
+	color: #ffffff;
+	border-radius: 8px;
+	padding: 6px 18px;
+}
+
+.btn-create:hover {
+	color: white;
+}
+.btn-create:active {
+	margin-top: 0.5px;
+	box-shadow: 0.8px 1px #0545ef;
+}
+
+.table {
+	color: white;
+}
+.table td {
+	border-top: 1px solid #61696f8c;
+}
+.table th {
+	border-top: none;
+}
+
+.create-user input[type="text"]{
+	color: white;
+	border-radius: 0;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #61696f8c;
+}
+
+.create-user input[type="text"]:focus{
+	background: none;
+	border: none;
+	border-bottom: 1px solid;
+}

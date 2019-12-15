@@ -1,25 +1,25 @@
 extends ../layouts/common
 block content
-
-	.container-fluid
-		h1(class="ml-3 mt-1 text-info") Users
-		.d-flex
-				a(href="/users/create", class="btn btn-primary ml-3 mb-3") Create
-				form.form-inline.ml-auto(action='/users/search', method='GET')
-					input#searchItem.form-control.mr-sm-2(name='q', type='text', placeholder='Search', aria-label='Search')
-					button.btn.btn-outline-info.mr-sm-4(type='submit') Search	
-		table.table
-			tr
-				th Name
-				th Phone
-				td Action
-
-			each user in users
+	#main
+		.container-fluid.p-0.rounded.shadow
+			h2(class="ml-2 mt-2 text-info h2 p-2")
+				i.fa.fa-user.text-light
+					span  Users
+			.d-flex
+				a(href="/users/create", class="btn btn-create ml-3 mb-3") New
+					
+			table.table
 				tr
-					td= user.name
-					td= user.phone
-					td
-						a.btn.btn-light(href="/users/" + user.id) View
+					th.text-info Name
+					th.text-info Phone
+					th.text-info Action
+
+				each user in users
+					tr
+						td= user.name
+						td= user.phone
+						td
+							a.btn.btn-light(href="/users/" + user.id) View
 
 
 	script.

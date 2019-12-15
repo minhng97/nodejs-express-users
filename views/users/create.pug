@@ -1,16 +1,18 @@
 extends ../layouts/common
 block content
-	h1 Create user
-	if errors
-		each error in errors
-			.alert.alert-danger= error
+	#main
+		.container-fluid.ml-3.rounded.shadow(style="width: 320px; padding:18px 48px;")
+			h2.h2 Create user
+			if errors
+				each error in errors
+					.alert.alert-danger= error
 
-	.input-group.mb-3.ml-3
-		form(action="/users/create", method="POST")
-			.form-group
-				label(for="name") Name
-				input#name(name="name", type="text", class="form-control", value=values ? values.name : "")
-			.form-group
-				label(for="phone") Phone
-				input#phone(name="phone", type="text", class="form-control", value=values ? values.phone : "")
-			button(class="btn btn-success") Create
+			.input-group.mb-3.ml-3
+				form.create-user(action="/users/create", method="POST")
+					.form-group
+						label(for="name") Name
+						input#name(name="name", type="text", class="form-control", value=values ? values.name : "")
+					.form-group
+						label(for="phone") Phone
+						input#phone(name="phone", type="text", class="form-control", value=values ? values.phone : "")
+					button(class="btn btn-create btn-create-hover") Create

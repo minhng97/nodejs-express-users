@@ -1,17 +1,36 @@
 html
 	head
 		link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
+		link(rel="stylesheet" href="../styles/custom.css")
+		link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
 	body
 		block header
-			header.navbar.navbar-expand-lg.navbar-dark.bg-dark
-				a.navbar-brand(href='../')
-					img(src="/images/logo.png", width="30", height="30")
-				a.nav-link(href="../", class="text-white") Home
-				a.nav-link(href='../users', class="text-white") Users
-				button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarColor01', aria-controls='navbarColor01', aria-expanded='false', aria-label='Toggle navigation')
-					span.navbar-toggler-icon#navbarColor01.collapse.navbar-collapse
-				ul.navbar-nav.mr-auto
-				form.form-inline(action='/users/search', method='GET')
-					input#searchItem.form-control.mr-sm-2(name='q', type='text', placeholder='Search', aria-label='Search')
-					button.btn.btn-outline-info.my-2.my-sm-0(type='submit') Search
+			form.form-inline.ml-auto.mt-3(action='/users/search', method='GET')
+				input#searchItem.form-control.mr-sm-2.ml-auto(name='q', type='text', placeholder='Search', aria-label='Search')
+				button.btn.btn-outline-info.mr-sm-4.btn-search(type='submit') Search
+		block sidebar
+			#mySidenav.sidenav.shadow
+				a.closebtn(href="javascript:void(0)" onclick="closeNav()") &times;
+				.navbar-brand.h4(href='../')
+					img.ml-5(src="/images/logo.png", width="30", height="30")
+				a.nav-link.h4(href="../")
+					i.fa.fa-home  Home
+				a.nav-link.h4(href='../users')
+					i.fa.fa-users  Users
+				a.nav-link.h4(href='../users/create') 
+					i.fa.fa-user-plus  Create
+			i.fa.fa-caret-right.text-secondary(onclick="openNav()" style="font-size: 40px;")
 		block content
+		block footer
+			script.
+				function openNav() {
+					document.getElementById("mySidenav").style.width="170px";
+					document.getElementById("main").style.marginLeft = "200px";
+				}
+
+				function closeNav(){
+					document.getElementById("mySidenav").style.width="0";
+					document.getElementById("main").style.marginLeft = "0";
+				}
