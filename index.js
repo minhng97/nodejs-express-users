@@ -10,7 +10,7 @@ const port = 3000;
 const app = express();
 app.set('view engine', 'pug') //set the view engine
 app.set('views', './views') //set the pug folder
-app.use(cookieParser())
+app.use(cookieParser()) // view the cookie
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
