@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 
-const validate = require('../validate/user.validate')
+const validate = require('../validate/user.validate') // validate input field
 const controller = require('../controllers/user.controller') //  controller = module.exports
 
 router.get('/', controller.index); // module.exports.index
