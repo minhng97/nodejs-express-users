@@ -62,12 +62,12 @@ body {
 }
 .btn-create {
 	background: #0545ef;
-background: rgb(0,69,255);
-background: linear-gradient(0deg, rgba(0,69,255,1) 23%, rgba(3,67,238,1) 47%);
+	background: rgb(0,69,255);
+	background: linear-gradient(0deg, rgba(0,69,255,1) 23%, rgba(3,67,238,1) 47%);
 	border: none;
 	color: #ffffff;
 	border-radius: 8px;
-	padding: 6px 18px;
+	padding: 4px 18px 6px 18px;
 }
 
 .btn-create:hover {
@@ -75,7 +75,6 @@ background: linear-gradient(0deg, rgba(0,69,255,1) 23%, rgba(3,67,238,1) 47%);
 }
 .btn-create:active {
 	margin-top: 0.5px;
-	box-shadow: 0.8px 1px #0545ef;
 }
 
 .table {
