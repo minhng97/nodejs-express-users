@@ -11,12 +11,12 @@ const port = 3000;
 const app = express();
 app.set('view engine', 'pug') //set the view engine
 app.set('views', './views') //set the pug folder
-app.use(cookieParser()) // view the cookie
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cookieParser('abcDefGhj123')) // view the cookie
 
-// The app responds with “AAA” for requests to the root URL (/), it renders the index.pug file
+// The app responds, it render index.pug plus an object with name: “AAA” for requests to the root URL (/)
 app.get('/', (req, res) => res.render('index', {
 	name: "AAA"
 }));
