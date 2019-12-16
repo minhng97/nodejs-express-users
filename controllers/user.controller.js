@@ -23,7 +23,7 @@ module.exports.create =  (req, res) => {
 	res.render('users/create') 
 }
 module.exports.get = (req, res) => { // must be under users/create or it will missunderstand
-	var id = req.params.id; // find the :id
+	var id = req.params.id; // find the :id in user.route
 	var user = db.get('users').find({ id: id }).value(); // find user with an id
  	res.render('users/view', { // render view.pug with object is users
  		user: user
