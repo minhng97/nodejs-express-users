@@ -29,8 +29,9 @@ module.exports.get = (req, res) => { // must be under users/create or it will mi
  		user: user
  	});
 }
-module.exports.postCreate = (req, res) => { // when post request, add user name into db.json
+module.exports.postCreate = (req, res) => { // when post request, add user into db.json
 	req.body.id = shortid.generate();
+	req.body.avatar = req.file.path.split('\\').slice(1).join('/');
 
 	//console.log(res.locals) // in user.validate
 	db.get('users').push(req.body).write();

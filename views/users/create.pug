@@ -8,11 +8,14 @@ block content
 					.alert.alert-danger= error
 
 			.input-group.mb-3.ml-3
-				form.create-user(action="/users/create", method="POST")
+				form.create-user(action="/users/create", method="POST", enctype="multipart/form-data")
 					.form-group
 						label(for="name") Name
 						input#name(name="name", type="text", class="form-control", value=values ? values.name : "")
 					.form-group
 						label(for="phone") Phone
 						input#phone(name="phone", type="text", class="form-control", value=values ? values.phone : "")
+					.form-group
+						label(for="avatar") Avatar
+						input#avatar(name="avatar", type="file", class="form-control-file")
 					button(class="btn btn-create") Create

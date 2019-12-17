@@ -1,5 +1,5 @@
 module.exports.postCreate = function(req, res, next) {
-	var errors = [] // to check if user type something
+	var errors = [] // to check if input has something
 		if (!req.body.name) {
 			errors.push('Name is required.')
 		}

@@ -11,12 +11,18 @@ block content
 					
 			table.table
 				tr
+					th.text-info Avatar
 					th.text-info Name
 					th.text-info Phone
 					th.text-info Action
 
 				each user in users
 					tr
+						td
+							if user.avatar
+								img(src='../' + user.avatar, width='64', height='64')
+							else
+								img(src='../uploads/default.png', width='64', height='64')
 						td= user.name
 						td= user.phone
 						td
