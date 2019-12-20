@@ -7,9 +7,6 @@ html
 		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
 	body
 		block header
-			form.form-inline.ml-auto.mt-3(action='/users/search', method='GET')
-				input#searchItem.form-control.mr-sm-2.ml-auto(name='q', type='text', placeholder='Search', aria-label='Search')
-				button.btn.btn-outline-info.mr-sm-4.btn-search(type='submit') Search
 		block sidebar
 			#mySidenav.sidenav.shadow
 				a.closebtn(href="javascript:void(0)" onclick="closeNav()") &times;

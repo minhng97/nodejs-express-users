@@ -1,14 +1,18 @@
 extends ../layouts/common
 block content
 	#main
-		.container-fluid.p-0.rounded.shadow
+		.container-fluid.p-2.mt-5.rounded.shadow
 			h2(class="ml-2 mt-2 text-info h2 p-2")
 				i.fa.fa-user.text-light
 					if user
 						span= user.name
 			.d-flex
-				a(href="/users/create", class="btn btn-create ml-3 mb-3") New
-					
+				div
+					a(href="/users/create", class="btn btn-create ml-3 mb-3") New
+				
+					form.form-inline.ml-auto.mt-3(action='/users/search', method='GET')
+						input#searchItem.form-control.mr-sm-2.ml-auto(name='q', type='text', placeholder='Search', aria-label='Search')
+						button.btn.btn-outline-info.mr-sm-4.btn-search(type='submit') Search
 			table.table
 				tr
 					th.text-info Avatar

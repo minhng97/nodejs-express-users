@@ -1,7 +1,7 @@
 extends ../layouts/common
 block content
 	#main
-		.container-fluid.ml-3.rounded.shadow(style="width: 320px; padding:18px 48px;")
+		.container-fluid.ml-3.rounded.shadow(style="width: 300px; padding:18px 38px;")
 			h2.h2 List products
 			.d-flex.align-items-center
 				form.ml-auto(action="/products/search", method="GET", class="d-flex")
@@ -17,16 +17,15 @@ block content
 							.card-body
 								h5.card-title.text-dark= product.name
 								p.card-text.text-dark= product.description
-								a.btn.btn-primary(href="/cart/add" + product.id) Add to card
+								a.btn.btn-primary(href="/cart/add/" + product.id) Add to card
 			nav(aria-label='Page navigation')
 				ul.pagination.justify-content-center.mb-3
 					//if page = end
 					//	- var disable = " disabled"
+
 					if page === 1
-						//li.page-item.disabled
-						//	a.page-link(href='#' tabindex='-1' aria-disabled='true') Previous
 						li.page-item.disabled
-							a.page-link(href='?page='+ page) 1
+							a.page-link(href='?page=1') 1
 						li.page-item
 							a.page-link(href='?page='+ parseInt(2)) 2	
 						li.page-item
@@ -35,7 +34,18 @@ block content
 							a.page-link(href='?page='+ parseInt(page + 1)) Next
 						li.page-item
 							a.page-link(href='?page='+ parseInt(end)) Last
-					else
+					else if page === 2
+						li.page-item
+							a.page-link(href='?page=1') 1
+						li.page-item.disabled
+							a.page-link(href='?page='+ parseInt(2)) 2	
+						li.page-item
+							a.page-link(href='?page='+ parseInt(3)) 3
+						li.page-item
+							a.page-link(href='?page='+ parseInt(page + 1)) Next
+						li.page-item
+							a.page-link(href='?page='+ parseInt(end)) Last
+					else if page < end
 						li.page-item
 							a.page-link(href='?page=' + parseInt(page - 1)) Previous
 						li.page-item
@@ -46,12 +56,26 @@ block content
 							a.page-link(href='?page='+ parseInt(page + 1))= page + 1
 						li.page-item.disabled
 							a.page-link ...
-						li(class="page-item" + disable)
+						li(class="page-item" + disable, style=nearLast)
 							a.page-link(href='?page='+ parseInt(page + 3))= page + 3
 						li(class="page-item" + disable)
 							a.page-link(href='?page='+ parseInt(page + 1)) Next
 						li(class="page-item")
 							a.page-link(href='?page='+ parseInt(end)) Last
+					else if page = end
+						li.page-item
+							a.page-link(href='?page=1') 1
+						li.page-item
+							a.page-link(href='?page=' + parseInt(page - 2))= page - 2
+						li.page-item
+							a.page-link(href='?page='+ parseInt(page - 1))= page - 1
+						li.page-item.disabled
+							a.page-link(href='?page='+ parseInt(end))= page
+						li.page-item.disabled
+							a.page-link(href='#') Next
+						li.page-item.disabled
+							a.page-link(href='#') Last
+
 			.d-flex
 				form.m-auto(action="/products?page=" + page, method="GET", class="d-flex")
 					input(type="text", name="page", class="form-control text-center", style="width: 44px; height: 30px", value=page)

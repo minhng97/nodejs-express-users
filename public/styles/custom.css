@@ -66,8 +66,6 @@ body {
 	background: linear-gradient(0deg, rgba(0,69,255,1) 23%, rgba(3,67,238,1) 47%);
 	border: none;
 	color: #ffffff;
-	border-radius: 8px;
-	padding: 4px 18px 6px 18px;
 }
 
 .btn-create:hover {

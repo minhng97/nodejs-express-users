@@ -1,16 +1,16 @@
-const db = require('../db')
+const db = require('../db');
 
 module.exports.index = (req, res) => {
-	var allProducts = db.get('products').value().length
+	var allProducts = db.get('products').value().length;
 
-	var page = parseInt(req.query.page) || parseInt(1)
-	var perPage = 8
+	var page = parseInt(req.query.page) || 1;
+	var perPage = 8;
 
-	var start = (page - 1) * perPage
-	var end = page * perPage
+	var start = (page - 1) * perPage;
+	var end = page * perPage;
 
-	var drop = (page - 1) * perPage
-	var lastPage = parseInt(allProducts / perPage) + 1
+	var drop = (page - 1) * perPage;
+	var lastPage = Math.ceil(allProducts / perPage); 
 
 	res.render('products/index', { 
 	products: db.get('products').drop(drop).take(perPage).value(),
