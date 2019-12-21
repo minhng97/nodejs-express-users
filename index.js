@@ -23,9 +23,9 @@ app.set('views', './views'); //set the pug folder
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(cookieParser('abcDefGhj123')) // view the cookie
+app.use(cookieParser(process.env.SESSION_SECRET)) // view the cookie
 app.use(sessionMiddleware);
-app.use(csurf({ cookie: true }));
+
 
 app.use(express.static('public'));
 
@@ -41,6 +41,7 @@ app.use('/users',
 app.use('/auth', authRoute);
 app.use('/products', productRoute);
 app.use('/cart', cartRoute);
+app.use(csurf({ cookie: true }));
 app.use('/transfer', authMiddleware.requireAuth, transferRoute);
 
 
