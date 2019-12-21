@@ -1,0 +1,15 @@
+extends ../layouts/common
+block content
+	#main
+		.container-fluid.ml-3.mt-3.rounded.shadow
+			h1 New transfer
+			.input-group.mb-3.ml-3
+				form.create-user(method="POST")
+					input(type="hidden", name="_csrf", value=csrfToken)
+					.form-group
+						label(for="account") Name
+						input#account(name="accountId", type="text", class="form-control")
+					.form-group
+						label(for="amount") Amount
+						input#amount(name="amount", type="number", class="form-control")
+					button(class="btn btn-create") Transfer
