@@ -38,7 +38,6 @@ app.get('/', (req, res) => {
 )});
 
 app.use('/users',
-  authMiddleware.requireAuth,
   userRoute);
 app.use('/auth', authRoute);
 app.use('/products', productRoute);
