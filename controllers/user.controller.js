@@ -1,15 +1,18 @@
-const db = require('../db')
-const shortid = require('shortid')
+//const db = require('../db')
+//const shortid = require('shortid')
+var User = require('../models/user.model');
 
 // if this file is required out side, var module.exports = controller => module.exports.index = controller.index
-module.exports.index = (req, res) => {
-	res.render('users/index', { // render the index.pug in users/index
-	users: db.get('users').value() //array of users in db.json
+module.exports.index = async (req, res) => {
+	var users = await User.find();
+		res.render('users/index', { // render the index.pug in users/index
+			users: users //array of users in mongo database
 }
 )}
-module.exports.search =  (req, res) => { // function start when get users/search
+module.exports.search = async (req, res) => { // function start when get users/search
 	var q = req.query.q;//req.query = q?abc=xyz
-	var matchedUsers = db.get('users').value().filter(function(user){ //filter the user name
+	var users = await User.find();
+	var matchedUsers = users.filter(function(user){ //filter the user name
 		return user.name.toLowerCase().includes(q.toLowerCase());
 	});
 
@@ -21,14 +24,16 @@ module.exports.search =  (req, res) => { // function start when get users/search
 module.exports.create =  (req, res) => { 
 	res.render('users/create') 
 }
-module.exports.get = (req, res) => { // must be under users/create or it will missunderstand
-	var id = req.params.id; // find the :id in user.route
-	var user = db.get('users').find({ id: id }).value(); // find user with an id
- 	res.render('users/view', { // render view.pug with object is users
- 		user: user
+module.exports.get = async (req, res) => { // must be under users/create or it will missunderstand
+	var id = await req.params.id; // find the :id in user.route
+	var users = await User.find();
+	var userView = await users.filter(user => user._id === id);
+	 console.log(userView);
+	 	res.render('users/view', { // render view.pug with object is users
+	 		user: userView
  	});
 }
-module.exports.postCreate = (req, res) => { // when post request, add user into db.json
+module.exports.postCreate = async (req, res) => { // when post request, add user into db.json
 	req.body.id = shortid.generate();
 	req.body.avatar = req.file.path.split('\\').slice(1).join('/');
 
