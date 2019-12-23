@@ -1,20 +1,27 @@
-const db = require('../db');
+var Product = require('../models/product.model');
 
-module.exports.index = (req, res) => {
-	var allProducts = db.get('products').value().length;
+//const db = require('../db');
 
-	var page = parseInt(req.query.page) || 1;
-	var perPage = 8;
+module.exports.index = async function(req, res) {
+// 	var allProducts = db.get('products').value().length;
 
-	var start = (page - 1) * perPage;
-	var end = page * perPage;
+// 	var page = parseInt(req.query.page) || 1;
+// 	var perPage = 8;
 
-	var drop = (page - 1) * perPage;
-	var lastPage = Math.ceil(allProducts / perPage); 
+// 	var start = (page - 1) * perPage;
+// 	var end = page * perPage;
 
-	res.render('products/index', { 
-	products: db.get('products').drop(drop).take(perPage).value(),
-	page: page,
-	end: lastPage
-}
-)}
+// 	var drop = (page - 1) * perPage;
+// 	var lastPage = Math.ceil(allProducts / perPage); 
+
+// 	res.render('products/index', { 
+// 	products: db.get('products').drop(drop).take(perPage).value(),
+// 	page: page,
+// 	end: lastPage
+// }
+// )
+	var products = await Product.find();
+		res.render('products/index', {
+			products: products
+	})
+};
