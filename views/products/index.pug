@@ -16,7 +16,7 @@ block content
 							img.card-img-top(src=product.image)
 							.card-body
 								h5.card-title.text-dark= product.name
-								p.card-text.text-dark= product.description
+								p.card-text.text-dark.text-truncate= product.description
 								a.btn.btn-primary(href="/cart/add/" + product.id) Add to card
 			nav(aria-label='Page navigation')
 				ul.pagination.justify-content-center.mb-3
