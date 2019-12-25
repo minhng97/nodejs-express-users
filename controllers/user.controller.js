@@ -1,5 +1,3 @@
-//const db = require('../db')
-//const shortid = require('shortid')
 var User = require('../models/user.model');
 
 // if this file is required out side, var module.exports = controller => module.exports.index = controller.index
@@ -33,9 +31,14 @@ module.exports.get = async (req, res) => { // must be under users/create or it w
  	});
 }
 module.exports.postCreate = async (req, res) => { // when post request, add user into db.json
-	req.body.id = shortid.generate();
-	req.body.avatar = req.file.path.split('\\').slice(1).join('/');
+	var ObjectID = require('mongodb').ObjectID;
+	req.body.avatar = await req.file.path.split('\\').slice(1).join('/');
+	
+	var newUser = await new User({ _id: new ObjectID(), name: req.body.name, phone: req.body.phone, avatar: req.body.avatar });
+    newUser.save(function (err, usr) {
+      if (err) return console.error(err);
+      console.log(usr.name + " saved to users collection.");
+    });
 
-	db.get('users').push(req.body).write();
 	res.redirect('./');
 }
