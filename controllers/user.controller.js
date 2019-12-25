@@ -12,7 +12,7 @@ module.exports.index = async (req, res) => {
 module.exports.search = async (req, res) => { // function start when get users/search
 	var q = req.query.q;//req.query = q?abc=xyz
 	var users = await User.find();
-	var matchedUsers = users.filter(function(user){ //filter the user name
+	var matchedUsers = await users.filter(function(user){ //filter the user name
 		return user.name.toLowerCase().includes(q.toLowerCase());
 	});
 
@@ -28,9 +28,8 @@ module.exports.get = async (req, res) => { // must be under users/create or it w
 	var id = await req.params.id; // find the :id in user.route
 	var users = await User.find();
 	var userView = await users.filter(user => user._id === id);
-	 console.log(userView);
 	 	res.render('users/view', { // render view.pug with object is users
-	 		user: userView
+	 		user: userView[0]
  	});
 }
 module.exports.postCreate = async (req, res) => { // when post request, add user into db.json

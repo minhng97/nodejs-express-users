@@ -1,17 +1,16 @@
+var User = require('../models/user.model');
 const md5 = require('md5');
-const db = require('../db');
 
 module.exports.login = (req, res) => {
 	res.render('auth/login'); // render the index.pug in users/index
 }
 
-module.exports.postLogin = (req, res) => {
-	var email = req.body.email;
-	var password = req.body.password;
-	var user = db.get('users').find({ email: email }).value();
-
-
-	if(!user) {
+module.exports.postLogin = async (req, res) => {
+	var email = await req.body.email;
+	var password = await req.body.password;
+	var user = await User.find();
+	var matchedUser = await user.filter(user => user.email === email );
+	if(!matchedUser[0]) {
 		res.render('auth/login', {
 			errors: ['User does not exist'],
 			values: req.body
@@ -19,9 +18,9 @@ module.exports.postLogin = (req, res) => {
 		return;
 	}
 
-	var hashPassword = md5(password);
+	var hashPassword = await md5(password);
 	
-	if(user.password !== hashPassword) {
+	if(matchedUser[0].password !== hashPassword) {
 		res.render('auth/login', {
 			errors: ['Wrong password'],
 			values: req.body
@@ -29,7 +28,7 @@ module.exports.postLogin = (req, res) => {
 		return;
 	}
 
-	res.cookie('userId', user.id, {
+	res.cookie('userId', user[0]._id, {
 		signed: true
 	});
 	res.redirect('/users');
