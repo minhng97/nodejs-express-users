@@ -37,6 +37,9 @@ app.get('/', (req, res) => {
 	name: "AAA" }
 )});
 
+app.get('/logout', (req, res) => { 
+	res.clearCookie('userId');
+	res.redirect('/users'); });
 app.use('/users',
   authMiddleware.requireAuth,
   userRoute);
