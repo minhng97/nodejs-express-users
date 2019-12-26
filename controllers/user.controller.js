@@ -33,8 +33,9 @@ module.exports.get = async (req, res) => { // must be under users/create or it w
 module.exports.postCreate = async (req, res) => { // when post request, add user into db.json
 	var ObjectID = require('mongodb').ObjectID;
 	req.body.avatar = await req.file.path.split('\\').slice(1).join('/');
-	
+
 	var newUser = await new User({ _id: new ObjectID(), name: req.body.name, phone: req.body.phone, avatar: req.body.avatar });
+   
     newUser.save(function (err, usr) {
       if (err) return console.error(err);
       console.log(usr.name + " saved to users collection.");
