@@ -6,4 +6,5 @@ var router = express.Router();
 
 router.get('/add/:productId', controller.addToCart);
 
+router.get('/', controller.myCart)
 module.exports = router;
