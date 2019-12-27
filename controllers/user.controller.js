@@ -26,7 +26,7 @@ module.exports.get = async (req, res) => { // must be under users/create or it w
 	var id = await req.params.id; // find the :id in user.route
 	var users = await User.find();
 	var userView = await users.find(el => el._id === id);
-	console.log(userView)
+
 	 	res.render('users/view', { // render view.pug with object is users
 	 		user: userView
  	});
