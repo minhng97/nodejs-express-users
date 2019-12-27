@@ -25,9 +25,10 @@ module.exports.create =  (req, res) => {
 module.exports.get = async (req, res) => { // must be under users/create or it will missunderstand
 	var id = await req.params.id; // find the :id in user.route
 	var users = await User.find();
-	var userView = await users.filter(user => user._id === id);
+	var userView = await users.find(el => el._id === id);
+	console.log(userView)
 	 	res.render('users/view', { // render view.pug with object is users
-	 		user: userView[0]
+	 		user: userView
  	});
 }
 module.exports.postCreate = async (req, res) => { // when post request, add user into db.json
