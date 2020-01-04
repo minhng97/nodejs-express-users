@@ -6,11 +6,11 @@ module.exports.login = (req, res) => {
 }
 
 module.exports.postLogin = async (req, res) => {
-	var email = await req.body.email;
-	var password = await req.body.password;
-	var user = await User.find();
-	var matchedUser = await user.filter(user => user.email === email );
-	if(!matchedUser[0]) {
+	var email = req.body.email;
+	var password = req.body.password;
+	var matchedUser = await User.findOne( {email: email});
+	console.log(matchedUser)
+	if(!matchedUser) {
 		res.render('auth/login', {
 			errors: ['User does not exist'],
 			values: req.body
@@ -18,9 +18,9 @@ module.exports.postLogin = async (req, res) => {
 		return;
 	}
 
-	var hashPassword = await md5(password);
+	var hashPassword = md5(password);
 	
-	if(matchedUser[0].password !== hashPassword) {
+	if(matchedUser.password !== hashPassword) {
 		res.render('auth/login', {
 			errors: ['Wrong password'],
 			values: req.body
@@ -28,7 +28,7 @@ module.exports.postLogin = async (req, res) => {
 		return;
 	}
 
-	res.cookie('userId', user[0]._id, {
+	res.cookie('userId', matchedUser._id, {
 		signed: true
 	});
 	res.redirect('/users');
