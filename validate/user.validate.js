@@ -1,12 +1,15 @@
 module.exports.postCreate = function(req, res, next) {
-	var errors = [] // to check if input has something
+	var errors = []; // to check if input has something
 		if (!req.body.name) {
 			errors.push('Name is required.')
 		}
 		if (!req.body.phone) {
 			errors.push('Phone is required.')
 		}
-		if (!req.body.avata) {
+		if (!req.body.password) {
+			errors.push('Password is required.')
+		}
+		if (!req.body.avatar) {
 			errors.push('Avatar is required.')
 		}
 		if (errors.length) {
@@ -16,6 +19,6 @@ module.exports.postCreate = function(req, res, next) {
 			})
 			return
 		}
-	res.locals.success = true 
-	next()
+	res.locals.success = true;
+	next();
 }
