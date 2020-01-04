@@ -6,15 +6,14 @@ module.exports.requireAuth = async (req, res, next) => {
 		return;
 
 	}
-	var user = await User.find();
-	matchedUser = await user.filter(user => user._id === req.signedCookies.userId);
+	matchedUser = User.findById(req.signedCookies.userId);
 
-	if(!matchedUser[0]) {	// if cookies.userId is wrong redirect to login page
+	if(!matchedUser) {	// if cookies.userId is wrong redirect to login page
 		res.redirect('/auth/login');
 		return;
 
 	}
 
-	res.locals.user = matchedUser[0];
+	res.locals.user = matchedUser;
 	next(); // to next route
 }
