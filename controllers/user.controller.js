@@ -1,4 +1,5 @@
 var User = require('../models/user.model');
+var md5 = require('md5');
 
 // if this file is required out side, var module.exports = controller => module.exports.index = controller.index
 module.exports.index = async (req, res) => {
@@ -23,19 +24,24 @@ module.exports.create =  (req, res) => {
 	res.render('users/create') 
 }
 module.exports.get = async (req, res) => { // must be under users/create or it will missunderstand
-	var id = await req.params.id; // find the :id in user.route
-	var users = await User.find();
-	var userView = await users.find(el => el._id === id);
+	var id = req.params.id; // find the :id in user.route
+	var user = await User.findById(id);
 
-	 	res.render('users/view', { // render view.pug with object is users
-	 		user: userView
+		res.render('users/view', { // render view.pug with object is users
+	 		user: user
  	});
 }
 module.exports.postCreate = async (req, res) => { // when post request, add user into db.json
-	var ObjectID = require('mongodb').ObjectID;
+	//var ObjectID = require('mongodb').ObjectID;
 	req.body.avatar = await req.file.path.split('\\').slice(1).join('/');
 
-	var newUser = await new User({ _id: new ObjectID(), name: req.body.name, phone: req.body.phone, avatar: req.body.avatar });
+	var newUser = await new User({ 
+		_id: ObjectID,
+		name: req.body.name,
+		phone: req.body.phone,
+		password: md5(req.body.password),
+		avatar: req.body.avatar });
+		
    
     newUser.save(function (err, usr) {
       if (err) return console.error(err);
@@ -43,4 +49,5 @@ module.exports.postCreate = async (req, res) => { // when post request, add user
     });
 
 	res.redirect('./');
+	return;
 }
