@@ -7,9 +7,11 @@ module.exports = async function(req, res, next) {
 	  res.cookie('sessionId', sessionId, {
 		signed: true
 	});
-
+	var ObjectID = require('mongodb').ObjectID;
 	var newSession = await new Session({
-	 	id: sessionId, cart: {}
+		_id: ObjectID,
+		id: sessionId,
+		cart: {}
 	 });
 	
 	newSession.save(function (err, ses) {
